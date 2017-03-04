@@ -1,0 +1,77 @@
+Year,Month,typeOfHotel,hotelName,StreetAddress,City,State,ZipCode,Country,Longitude,Latitude
+2013,September,Residence Inn,Residence Inn By Tysons Corner,8616 Westwood Center Dr,Vienna,VA,22182,USA,38.9292,-77.2482
+2013,October,Marriott,Lancaster Marriott at Penn Square,25 S Queen St,Lancaster,Pennsylvania,17603,USA,40,-76.3
+2013,December,Courtyard,Courtyard by Marriott Charlottesville - University Medical Center,1201 W Main St,Charlottesville,Virginia,22903,USA,38.0744,-78.4779
+2014,February,Courtyard,Courtyard by Marriott Rochester Brighton,33 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,February,Courtyard,Courtyard New York LaGuardia Airport,9010 Ditmars Blvd,East Elmhurst,New York,11369,USA,40.7692,-73.8797
+2014,March,Courtyard,Courtyard by Marriott Rochester Brighton,33 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,April,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,April,Marriott,Indianapolis North Marriott,3645 River Crossing Pkwy ,Indianapolis,Indiana,46240,USA,39.9179,-86.1042
+2014,April,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,May,Courtyard,Courtyard Omaha La Vista,12560 Westport Pkwy,La Vista,Nebraska,68128,USA,41.1817,-96.1099
+2014,May,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,June,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,July,Courtyard,Courtyard by Marriott Chevy Chase,5520 Wisconsin Ave,Chevy Chase,Maryland,20815,USA,38.9645,-77.0879
+2014,July,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,July,Marriott,Chicago Marriott at Medical District/UIC,625 S Ashland Ave,Chicago,Illinois,60607,USA,41.8738,-87.666
+2014,July,Marriott,Marriott Hollywood beach,2501 N Ocean Dr,Hollywood,Florida,33019,USA,26.0273,-80.1151
+2014,July,Marriott,Miami Marriott Biscayne Bay,1633 N Bayshore Dr,Miami,Florida,33132,USA,25.7909,-80.1862
+2014,July,Marriott,Key West Marriott Beachside Hotel,3841 N Roosevelt Blvd,Key West,Florida,33040,USA,24.571,-81.7523
+2014,July,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,August,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,August,Residence Inn,Residence Inn by Marriott Miami Airport,1201 NW 42nd Ave,Miami,Florida,33126,USA,25.7838,-80.2619
+2014,September,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,October,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,October,Courtyard,Courtyard Boston Logan Airport,"225 William F McClellan Hwy,Boston,Masschussetts,02128,USA,42.3874,-71.0163
+2014,Nov,Courtyard,Courtyard Boston Logan Airport,"225 William F McClellan Hwy,Boston,Massachusetts,02128,USA,42.3874,-71.0163
+2014,Nov,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,Nov,Residence Inn,Residence Inn Columbia,4950 Beaver Run Ct,Ellicott City,Maryland,21043,USA,39.2369,-76.815
+2014,Dec,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2014,Dec,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,January,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,Feb,Courtyard,Courtyard by Marriott Chicago Midway Airport,6610 S Cicero Ave,Bedford Park,Illinois,60638,USA,41.773,-87.7437
+2015,Feb,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,March,Courtyard,Courtyard by Marriott Rochester Brighton,35 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,April,Courtyard,Courtyard by Marriott Rochester Brighton,36 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,April,Courtyard,Courtyard by Marriott Rochester Brighton,37 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,April ,Courtyard,Courtyard by Marriott Rochester Brighton,38 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,April,Courtyard,Courtyard by Marriott Rochester Brighton,39 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,May,Residence Inn,Residence Inn by Marriott Bloomington by Mall of America,7850 Bloomington Ave S,Bloomington,Minnesota,55425,USA,44.8605,-93.2539
+2015,June,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,June,Courtyard,Courtyard by Marriott St. Louis Airport/Earth City,3101 Rider Trail S,Bridgeton,Missouri,63044,USA,38.7533,-90.4494
+2015,July,Atlantis,The Cove at Atlantis,Paradise Beach Dr. Suite 11,Paradise Island,,,Bahamas,25.0861,-77.327
+2015,July,Atlantis,Atlantis,Paradise Beach Dr. Suite 11,Paradise Island,,,Bahamas,25.0861,-77.327
+2015,July,Marriott,Boston Marriott ,1 Burlington mall road,Burlington,Massachusetts,01803,USA,42.49,-71.1954
+2015,August,Residence Inn,Residence Inn by Marriott Yonkers Westchester County,7 Executive Blvd,Westchester,New York,10701,USA,40.9732,-73.8786
+2015,August,Residence Inn,Residence Inn by Marriott St. Louis Airport/Earth City,3290 Rider Trail S,Earth City,Missouri,63045,USA,38.7614,-90.4542
+2015,September,Fairfield Inn,Fairfield Inn & Suites by Marriott Sioux Falls,4501 W Empire Pl,Sioux Falls,South Dakota,57106,USA,43.5082,-96.782
+2015,October,Fairfield Inn,Fairfield Inn by Marriott Rochester Airport,1200 Brooks Ave,Rochester,New York,14624,USA,43.1285,-77.6627
+2015,October,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
+2015,October,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2015,October,Courtyard,Courtyard by Marriott St. Louis Airport/Earth City,3101 Rider Trail S,Bridgeton,Missouri,63044,USA,38.7533,-90.4494
+2015,November,Courtyard,Courtyard Baltimore BWI Airport ,1671 W Nursery Rd,Linthicum Heights,Maryland,21090,USA,39.201,-76.6814
+2015,November,Fairfield Inn,Fairfield Inn & Suites by Marriott Baltimore BWI Airport,1020 Andover Rd,Linthicum Heights,Maryland,21090,USA,39.2006,-76.6798
+2015,November,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2015,Dec,Fairfield Inn,Fairfield Inn & Suites by Marriott Baltimore BWI Airport,1020 Andover Rd,Linthicum Heights,Maryland,21090,USA,39.2006,-76.6798
+2016,February,Fairfield Inn,Fairfield Inn & Suites by Marriott Milwaukee Downtown,710 N Old World 3rd St,Milwaukee,Wisconsin,53203,USA,43.039,-87.9144
+2016,February,Marriott,Paris Marriott Opera Ambassador Hotel,16 Boulevard Haussmann,,Paris,75009,France,48.8727,2.3365
+2016,February,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,March,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,March,Courtyard,Courtyard by Marriott San Francisco Downtown,299 2nd St,San Francisco,California,94105,USA,37.7859,-122.3969
+2016,March,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,April,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,April,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,April,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,May,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,June,AC Hotel,AC Hotel Bella Sky Copenhagen,"Center Blvd. 5, 2300",,Kobenhavn S,,Denmark,55.6396,-12.5782
+2016,June,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,June,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,July,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,July,Courtyard,Courtyard by Marriott Chicago Midway Airport,6610 S Cicero Ave,Bedford Park,Illinois,60638,USA,41.773,-87.7437
+2016,July,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,August,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,August,JW Marriott,JW Marriott El Convento Cusco,"Esquina de la y, Calle San Agustin",,Lima,,Peru,-13.517,-71.976
+2016,August,Courtyard,Courtyard by Marriott Lima Miraflores,Calle Schell 400,,Miraflores 15074,,Peru,-12.1234,-77.0277
+2016,Sepember ,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
+2016,November,Courtyard,Courtyard by Marriott Cleveland University Circle,2021 Cornell Rd,Cleveland,Ohio,44106,USA,41.508,-81.6052
+2016,November,Fairfield Inn,Fairfield Inn Elmira Suites and Corning,1600 County Rd 64,Horseheads,New York,14845,USA,42.1587,-76.8564
