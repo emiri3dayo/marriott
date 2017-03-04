@@ -112,7 +112,7 @@
 
       var countScale = d3.scaleSqrt();
       marriottWorldCountArray.forEach(function(d){
-        console.log(d)
+        
           svg1.append("circle")
             .attr("cx", projection([d.Latitude, d.Longitude])[0] )
             .attr("cy", projection([d.Latitude, d.Longitude])[1] )
@@ -208,7 +208,7 @@
         showMap2(marriottCountArray);
 
       });
-      console.log(marriottCount)
+
 
       function showMap2(marriottCountArray) {
 
