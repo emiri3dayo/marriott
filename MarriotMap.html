@@ -18,7 +18,7 @@
   <h1> Emiri's Marriott Adventures</h1>
 
   <p> While I was a project manager at Epic, I had the opportunity to travel across the world to different hospitals, and to travel.
-  <br></br>A kind Marriott representative helped me compile my list of Stays from September 2013 to August 2016.
+  <br></br>A kind Marriott representative helped me compile my list of Stays from September 2013 to August 2016. It's a total of 76 stays.
   <br></br> If you hover over my different points, I've included the number of stays per each hotel. The radius of the circle is proportionate to the number of stays.
   <br></br> In the future, I would like to create a lookup to pull up the list of stays by hotel type.</p>
   <br></br>
@@ -112,7 +112,7 @@
 
       var countScale = d3.scaleSqrt();
       marriottWorldCountArray.forEach(function(d){
-        
+
           svg1.append("circle")
             .attr("cx", projection([d.Latitude, d.Longitude])[0] )
             .attr("cy", projection([d.Latitude, d.Longitude])[1] )
