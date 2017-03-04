@@ -1,109 +1,152 @@
 <html>
 <head>
   <title>Where have I stayed at Marriott?</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css"><script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css"> -->
   <script src="http://d3js.org/topojson.v2.min.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.21.0/d3-legend.js"></script>
+  <link rel="stylesheet" href="marriottStyle.css">
 
 
-  <style>svg { border: solid #ccc 1px; }
-  path.country { fill: #ccc; stroke: "black";; }
-  .d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 1px;
-  }
-
-  div.tooltip {
-  position: absolute;
-  text-align: center;
-  width: 80px;
-  height: 60px;
-  padding: 2px;
-  font: 12px sans-serif;
-  background: lightsteelblue;
-  border: 0px;
-  border-radius: 8px;
-  pointer-events: none;
-}
+  <style>
   </style>
 </head>
 
 <body>
-  <p>
+
+
+  <h1> Emiri's Marriott Adventures</h1>
+
+  <p> While I was a project manager at Epic, I had the opportunity to travel across the world to different hospitals, and to travel.
+  <br></br>A kind Marriott representative helped me compile my list of Stays from September 2013 to August 2016.
+  <br></br> If you hover over my different points, I've included the number of stays per each hotel. The radius of the circle is proportionate to the number of stays.
+  <br></br> In the future, I would like to create a lookup to pull up the list of stays by hotel type.</p>
+  <br></br>
+  <br></br>
+  <br></br>
+  <h2>Stays in the World</h2>
 
   <svg id="svg1" height="400" width="1000"></svg>
 
   <script>
-  var svg1 = d3.select("#svg1");
+    var svg1 = d3.select("#svg1");
 
-    var projection = d3.geoEquirectangular();
+    var projection = d3.geoEquirectangular().scale(75).translate([500/2, 300/2]);
     var pathGenerator = d3.geoPath().projection(projection);
+
+    var color = ["#00535F", "#046CB0", "#68C500", "#6BACE4", "#000000",  "#A6002F", "#6D1547"];
+    var colorScale = d3.scaleOrdinal().domain(["AC Hotel", "Atlantis", "Courtyard", "Fairfield Inn", "JW Marriott", "Marriott", "Residence Inn"]).range(color);
 
     var rawMap;
     var countries;
+    var marriottWorld;
+    var marriottWorldCount=[];
 
 
+    d3.queue()
+      .defer(d3.json,"world-50m.json")
+      .defer(d3.csv,"marriottStays.csv?_=6")
+      .await(function (error, data, marriottWorld) {
 
-    d3.json("world-50m.json", function (error, data) {
       rawMap = data;
 
       countries = topojson.feature(rawMap, rawMap.objects.countries); //
-      showMap();
-      var interestingPoints =[[-77.6198,43],[-89,42],[139,35]];
-      var places=["Rochester, NY", "Verona Wisconsin", "Tsukiji Tokyo"];
-      var linePoints=[10,50,10]
 
 
-      var circles=svg1.selectAll("circle").data(interestingPoints);
-      circles.enter().append("circle").attr("r",1).style("fill","red")
-      .merge(circles)
-      .attr("cx", function(d) {return projection(d)[0]; })
-      .attr("cy", function(d) {return projection(d)[1]; })
+      for (var index in marriottWorld){ //counts total number of marriott stays
+        if ((marriottWorld.hasOwnProperty(index))&&(marriottWorld[index].hotelName!=undefined)){
+
+          if (!(marriottWorld[index].hotelName in marriottWorldCount)){
+            var temparray=[]
+            temparray["State"]=marriottWorld[index].State
+            temparray["count"]=1
+
+            temparray["Latitude"]=marriottWorld[index].Latitude
+            temparray["Longitude"]=marriottWorld[index].Longitude
+            temparray["typeOfHotel"]=marriottWorld[index].typeOfHotel
+            marriottWorldCount[marriottWorld[index].hotelName]=temparray
+          }
+          else {
+            marriottWorldCount[marriottWorld[index].hotelName]["count"]+=1
+          };
+        };
+      };
+      var marriottWorldCountArray=[]
+      for (var key in marriottWorldCount){
+        if (marriottWorldCount.hasOwnProperty(key)){
+          var obj=marriottWorldCount[key]
+          obj["hotelName"]=key
+          marriottWorldCountArray.push(obj)
+        }
+      };
 
 
 
-      var count=0
-      places.forEach(function(d){
-        svg1.append("text")
-        .text(places[count])
-        .style("fill", "blue")
-        .style("font-size","10pt")
-        .attr("x", function(d) {return projection(interestingPoints[count])[0]+30;})
-        .attr("y", function(d) {return projection(interestingPoints[count])[1]+linePoints[count];});
-        svg1.append("line")
-        .style("stroke", "blue")
-        .style("stroke-width",2)
-        .attr("x1", function(d) {return projection(interestingPoints[count])[0];})
-        .attr("y1", function(d) {return projection(interestingPoints[count])[1];})
-        .attr("x2",function(d) {return projection(interestingPoints[count])[0]+30;})
-        .attr("y2",function(d) {return projection(interestingPoints[count])[1]+linePoints[count];})
-        count=count+1;
-      });
+
+
+
+      showWorld(marriottWorldCountArray);
+
+
 
     });
 
 
 
-    function showMap() {
+    function showWorld(marriottWorldCountArray) {
       projection.fitExtent([[0,0], [svg1.attr("width"), svg1.attr("height")]], countries);
       pathGenerator = d3.geoPath().projection(projection);
 
 
       var paths=svg1.selectAll("path.country").data(countries.features);
-      paths.enter().append("path").attr("class","country").style("fill","#ccc").style("stroke","#888")
+      paths.enter().append("path").attr("class","country").style("fill","#B2B2B2").style("stroke","#FFFFFF")
       .merge(paths)
-      .attr("d", function(country){
-        return pathGenerator(country)
-
+      .attr("d", function(country){return pathGenerator(country)
       });
+
+
+
+      var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
+
+
+
+      var countScale = d3.scaleSqrt();
+      marriottWorldCountArray.forEach(function(d){
+        console.log(d)
+          svg1.append("circle")
+            .attr("cx", projection([d.Latitude, d.Longitude])[0] )
+            .attr("cy", projection([d.Latitude, d.Longitude])[1] )
+            .attr("id", d.hotelName)
+            .attr("stroke", colorScale(d.typeOfHotel))
+            .attr("stroke-width",0.2)
+            .attr("fill", colorScale(d.typeOfHotel))
+            .attr("r", function() {
+              return (countScale(d.count)*5); })
+            .on("mousemove", function(){
+              tooltip
+                .style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 100 + "px")
+                .style("display", "inline-block")
+                .html("Hotel: "+d.hotelName+"</br>"+"Count: "+ d.count);
+              })
+            .on("mouseout", function(){ tooltip.style("display", "none");})
+            .attr("fill-opacity","0.5");
+
+          });
+
+
+
+
     };
 
       </script>
 </p>
+
+<br></br>
+<br></br>
+<br></br>
+<h2> Stays in the US</h2>
+
   <p id="p2">
     <svg id="svg2" height="600" width="1000"></svg>
     <script>
@@ -162,34 +205,10 @@
         };
 
 
-    //
-    //   for (var i = 0; i < marriottStays.State; i++) {
-    //
-    // 	// Grab State Name
-    // 	var marriottState = marriottStays[i].state;
-    //
-    //
-    // 	// Find the corresponding state inside the GeoJSON
-    // 	for (var j = 0; j < json.features.length; j++)  {
-    // 		var jsonState = json.features[j].properties.name;
-    // 		if (marriottState == jsonState) {
-    //
-    // 		// Copy the data value into the JSON
-    // 		json.features[j].properties.visited = dataValue;
-    //
-    // 		// Stop looking through the JSON
-    // 		break;
-    // 		}
-    // 	}
-    // }
-
-
-
-
         showMap2(marriottCountArray);
 
       });
-
+      console.log(marriottCount)
 
       function showMap2(marriottCountArray) {
 
@@ -203,27 +222,12 @@
         .style("stroke","#5BE25B")
         .merge(paths)
         .style("fill", "#D6E0D6")
-        //
-        // 	// Get data value
-        // 	var value = d.properties.visited;
-        //
-        // 	if (value) {
-        // 	//If value exists…
-        // 	return "#00000";
-        // 	} else {
-        // 	//If value is undefined…
-        // 	return "rgb(213,222,217)"
-        // };
-        //
-        // })
+
 
 
         .attr("d", function(country){
           return pathGenerator2(country)
         });
-
-
-
 
 
         //modified code from Dave Gotz's using d3-tip with D3.js Version 4 http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
@@ -237,21 +241,20 @@
               .attr("cx", projection2([d.Latitude, d.Longitude])[0] )
               .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
               .attr("id", d.hotelName)
-              .attr("fill-opacity","0.25")
               .attr("stroke", colorScale(d.typeOfHotel))
-              .attr("stroke-width",1)
+              .attr("stroke-width",0.2)
               .attr("fill", colorScale(d.typeOfHotel))
               .attr("r", function() {
                 return (countScale(d.count)*5); })
               .on("mousemove", function(){
                 tooltip
                   .style("left", d3.event.pageX - 50 + "px")
-                  .style("top", d3.event.pageY - 70 + "px")
+                  .style("top", d3.event.pageY - 100 + "px")
                   .style("display", "inline-block")
-                  .html(d.hotelName);
+                  .html("Hotel: "+d.hotelName+"</br>"+"Count: "+ d.count);
                 })
               .on("mouseout", function(){ tooltip.style("display", "none");})
-              .attr("fill-opacity","0.25");
+              .attr("fill-opacity","0.5");
 
             });
           };

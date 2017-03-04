@@ -22,8 +22,8 @@ Year,Month,typeOfHotel,hotelName,StreetAddress,City,State,ZipCode,Country,Longit
 2014,August,Residence Inn,Residence Inn by Marriott Miami Airport,1201 NW 42nd Ave,Miami,Florida,33126,USA,25.7838,-80.2619
 2014,September,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
 2014,October,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
-2014,October,Courtyard,Courtyard Boston Logan Airport,"225 William F McClellan Hwy,Boston,Masschussetts,02128,USA,42.3874,-71.0163
-2014,Nov,Courtyard,Courtyard Boston Logan Airport,"225 William F McClellan Hwy,Boston,Massachusetts,02128,USA,42.3874,-71.0163
+2014,October,Courtyard,Courtyard Boston Logan Airport,225 William F McClellan Hwy,Boston,Masschussetts,02128,USA,42.3874,-71.0163
+2014,Nov,Courtyard,Courtyard Boston Logan Airport,225 William F McClellan Hwy,Boston,Massachusetts,02128,USA,42.3874,-71.0163
 2014,Nov,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
 2014,Nov,Residence Inn,Residence Inn Columbia,4950 Beaver Run Ct,Ellicott City,Maryland,21043,USA,39.2369,-76.815
 2014,Dec,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
@@ -41,7 +41,7 @@ Year,Month,typeOfHotel,hotelName,StreetAddress,City,State,ZipCode,Country,Longit
 2015,June,Courtyard,Courtyard by Marriott St. Louis Airport/Earth City,3101 Rider Trail S,Bridgeton,Missouri,63044,USA,38.7533,-90.4494
 2015,July,Atlantis,The Cove at Atlantis,Paradise Beach Dr. Suite 11,Paradise Island,,,Bahamas,25.0861,-77.327
 2015,July,Atlantis,Atlantis,Paradise Beach Dr. Suite 11,Paradise Island,,,Bahamas,25.0861,-77.327
-2015,July,Marriott,Boston Marriott ,1 Burlington mall road,Burlington,Massachusetts,01803,USA,42.49,-71.1954
+2015,July,Marriott,Boston Marriott,1 Burlington mall road,Burlington,Massachusetts,01803,USA,42.49,-71.1954
 2015,August,Residence Inn,Residence Inn by Marriott Yonkers Westchester County,7 Executive Blvd,Westchester,New York,10701,USA,40.9732,-73.8786
 2015,August,Residence Inn,Residence Inn by Marriott St. Louis Airport/Earth City,3290 Rider Trail S,Earth City,Missouri,63045,USA,38.7614,-90.4542
 2015,September,Fairfield Inn,Fairfield Inn & Suites by Marriott Sioux Falls,4501 W Empire Pl,Sioux Falls,South Dakota,57106,USA,43.5082,-96.782
@@ -49,7 +49,7 @@ Year,Month,typeOfHotel,hotelName,StreetAddress,City,State,ZipCode,Country,Longit
 2015,October,Courtyard,Courtyard by Marriott Rochester Brighton,34 Corporate Woods,Rochester,New York,14623,USA,43.1066,-77.6198
 2015,October,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2015,October,Courtyard,Courtyard by Marriott St. Louis Airport/Earth City,3101 Rider Trail S,Bridgeton,Missouri,63044,USA,38.7533,-90.4494
-2015,November,Courtyard,Courtyard Baltimore BWI Airport ,1671 W Nursery Rd,Linthicum Heights,Maryland,21090,USA,39.201,-76.6814
+2015,November,Courtyard,Courtyard Baltimore BWI Airport,1671 W Nursery Rd,Linthicum Heights,Maryland,21090,USA,39.201,-76.6814
 2015,November,Fairfield Inn,Fairfield Inn & Suites by Marriott Baltimore BWI Airport,1020 Andover Rd,Linthicum Heights,Maryland,21090,USA,39.2006,-76.6798
 2015,November,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2015,Dec,Fairfield Inn,Fairfield Inn & Suites by Marriott Baltimore BWI Airport,1020 Andover Rd,Linthicum Heights,Maryland,21090,USA,39.2006,-76.6798
@@ -63,7 +63,7 @@ Year,Month,typeOfHotel,hotelName,StreetAddress,City,State,ZipCode,Country,Longit
 2016,April,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2016,April,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2016,May,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
-2016,June,AC Hotel,AC Hotel Bella Sky Copenhagen,"Center Blvd. 5, 2300",,Kobenhavn S,,Denmark,55.6396,-12.5782
+2016,June,AC Hotel,AC Hotel Bella Sky Copenhagen,"Center Blvd. 5, 2300",,Kobenhavn S,,Denmark,55.6396,12.5782
 2016,June,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2016,June,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
 2016,July,Courtyard,Courtyard Salisbury,128 Troopers Way,Salisbury,Maryland,21804,USA,38.4192,-75.5631
