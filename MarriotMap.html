@@ -144,7 +144,7 @@
 
               temparray["Latitude"]=marriottUS[index].Latitude
               temparray["Longitude"]=marriottUS[index].Longitude
-              temparray["Typeofhotel"]=marriottUS[index].Typeofhotel
+              temparray["typeOfHotel"]=marriottUS[index].typeOfHotel
               marriottCount[marriottUS[index].hotelName]=temparray
             }
             else {
@@ -195,9 +195,9 @@
         var paths=svg2.selectAll("path.country").data(states.features);
         paths.enter().append("path")
         .attr("class","country")
-        .style("stroke","#20A720")
+        .style("stroke","#A4E2A4")
         .merge(paths)
-        .style("fill", "#8AE68A")
+        .style("fill", "#DDE6DD")
         //
         // 	// Get data value
         // 	var value = d.properties.visited;
@@ -226,7 +226,7 @@
 
         var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
 
-
+        console.log(marriottCount)
 
         var countScale = d3.scaleSqrt()
 
@@ -239,11 +239,10 @@
               .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
               .attr("id", key)
               .attr("r",5)
-
               .attr("fill-opacity","0.25")
-              .attr("stroke", colorScale(d.Typeofhotel))
+              .attr("stroke", colorScale(d.typeOfHotel))
               .attr("stroke-width",1)
-              .attr("fill", colorScale(d.Typeofhotel))
+              .attr("fill", colorScale(d.typeOfHotel))
               .attr("r", function() {return (countScale(d.count)*2); })
               .on("mousemove", function(){
                 tooltip
