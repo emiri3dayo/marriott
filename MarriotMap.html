@@ -53,7 +53,7 @@
       countries = topojson.feature(rawMap, rawMap.objects.countries); //
 
 
-      for (var index in marriottWorld){ //counts total number of marriott stays
+      for (var index in marriottWorld){ //counts total number of marriott stays, stores lat, long,type of hotel into an array
         if ((marriottWorld.hasOwnProperty(index))&&(marriottWorld[index].hotelName!=undefined)){
 
           if (!(marriottWorld[index].hotelName in marriottWorldCount)){
@@ -98,13 +98,14 @@
       pathGenerator = d3.geoPath().projection(projection);
 
 
-      var paths=svg1.selectAll("path.country").data(countries.features);
+      var paths=svg1.selectAll("path.country").data(countries.features); //creates map of US
       paths.enter().append("path").attr("class","country").style("fill","#B2B2B2").style("stroke","#FFFFFF")
       .merge(paths)
       .attr("d", function(country){return pathGenerator(country)
       });
 
 
+      //modified code from Dave Gotz's using d3-tip with D3.js Version 4 http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
 
       var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
 
@@ -113,7 +114,7 @@
       var countScale = d3.scaleSqrt();
       marriottWorldCountArray.forEach(function(d){
 
-          svg1.append("circle")
+          svg1.append("circle") //creates circles for each of the hotel stays. radius is proportional to number of stays
             .attr("cx", projection([d.Latitude, d.Longitude])[0] )
             .attr("cy", projection([d.Latitude, d.Longitude])[1] )
             .attr("id", d.hotelName)
@@ -172,9 +173,9 @@
       .await(function (error, usMap, marriottStays) {
 
 
-        states = topojson.feature(usMap, usMap.objects.states); //only show the states
+        states = topojson.feature(usMap, usMap.objects.states); //filter only show the states
 
-        marriottUS=marriottStays.filter(function(d) {return d.Country=="USA";});
+        marriottUS=marriottStays.filter(function(d) {return d.Country=="USA";}); //filter my data to just ones in the US
 
 
 
@@ -219,7 +220,7 @@
         var paths=svg2.selectAll("path.country").data(states.features);
         paths.enter().append("path")
         .attr("class","country")
-        .style("stroke","#5BE25B")
+        .style("stroke","#FFFFFF")
         .merge(paths)
         .style("fill", "#D6E0D6")
 
@@ -230,13 +231,12 @@
         });
 
 
-        //modified code from Dave Gotz's using d3-tip with D3.js Version 4 http://bl.ocks.org/davegotz/bd54b56723c154d25eedde6504d30ad7
-        //
+
 
         var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
 
         var countScale = d3.scaleSqrt();
-        marriottCountArray.forEach(function(d){
+        marriottCountArray.forEach(function(d){ //creates circles, appends tooltip
             svg2.append("circle")
               .attr("cx", projection2([d.Latitude, d.Longitude])[0] )
               .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
