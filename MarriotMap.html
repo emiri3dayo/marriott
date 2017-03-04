@@ -148,13 +148,18 @@
               marriottCount[marriottUS[index].hotelName]=temparray
             }
             else {
-
               marriottCount[marriottUS[index].hotelName]["count"]+=1
-
             };
-
-        }
-      }
+          };
+        };
+        var marriottCountArray=[]
+        for (var key in marriottCount){
+          if (marriottCount.hasOwnProperty(key)){
+            var obj=marriottCount[key]
+            obj["hotelName"]=key
+            marriottCountArray.push(obj)
+          }
+        };
 
 
     //
@@ -181,12 +186,12 @@
 
 
 
-        showMap2();
+        showMap2(marriottCountArray);
 
       });
 
 
-      function showMap2() {
+      function showMap2(marriottCountArray) {
 
         projection2.fitExtent([[0,0], [svg2.attr("width"), svg2.attr("height")]], states); //generates the states
         pathGenerator = d3.geoPath().projection(projection2);
@@ -195,9 +200,9 @@
         var paths=svg2.selectAll("path.country").data(states.features);
         paths.enter().append("path")
         .attr("class","country")
-        .style("stroke","#A4E2A4")
+        .style("stroke","#5BE25B")
         .merge(paths)
-        .style("fill", "#DDE6DD")
+        .style("fill", "#D6E0D6")
         //
         // 	// Get data value
         // 	var value = d.properties.visited;
@@ -226,43 +231,31 @@
 
         var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
 
-        console.log(marriottCount)
-
-        var countScale = d3.scaleSqrt()
-
-        for (var key in marriottCount){
-
-          if (marriottCount.hasOwnProperty(key)){
-            d=marriottCount[key]
+        var countScale = d3.scaleSqrt();
+        marriottCountArray.forEach(function(d){
             svg2.append("circle")
               .attr("cx", projection2([d.Latitude, d.Longitude])[0] )
               .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
-              .attr("id", key)
-              .attr("r",5)
+              .attr("id", d.hotelName)
               .attr("fill-opacity","0.25")
               .attr("stroke", colorScale(d.typeOfHotel))
               .attr("stroke-width",1)
               .attr("fill", colorScale(d.typeOfHotel))
-              .attr("r", function() {return (countScale(d.count)*2); })
+              .attr("r", function() {
+                return (countScale(d.count)*5); })
               .on("mousemove", function(){
                 tooltip
-                .html(d.count)
-                .style("left", d3.event.pageX - 50 + "px")
-                .style("top", d3.event.pageY - 70 + "px")
-                .style("display", "inline-block");
-                      })
+                  .style("left", d3.event.pageX - 50 + "px")
+                  .style("top", d3.event.pageY - 70 + "px")
+                  .style("display", "inline-block")
+                  .html(d.hotelName);
+                })
               .on("mouseout", function(){ tooltip.style("display", "none");})
               .attr("fill-opacity","0.25");
 
-            };
-      }
+            });
+          };
 
-
-
-
-
-
-    };
 
 
 
