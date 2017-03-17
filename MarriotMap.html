@@ -86,6 +86,7 @@
 
 
       showWorld(marriottWorldCountArray);
+      console.log(marriottWorldCountArray)
 
 
 
@@ -148,13 +149,18 @@
 <br></br>
 <h2> Stays in the US</h2>
 
-  <p id="p2">
+  <p id="svg2"></p>
+  <p id="svg3"></p>
+
     <svg id="svg2" height="600" width="1000"></svg>
     <script>
+      var height = 600;
+      var width = 1000;
+      var padding = 50;
 
+      var svg2 = d3.select("#svg2").append("svg")
+      .attr("height", height).attr("width", width);
 
-
-      var svg2 = d3.select("#svg2");
       var states;
       var marriottStays;
       var marriottCount=[];
@@ -260,10 +266,47 @@
           };
 
 
+      //beginning of bar graph
+      var height = 500;
+      var width = 500;
+      var padding = 50;
 
+      var svg3 = d3.select("#svg3").append("svg")
+      .attr("height", height).attr("width", width);
+
+      console.log(marriottWorldCountArray)
+      // var widthScale = d3.scale.linear().domain([0, publisherTotalsArray[0]["values"]]).range([300,800]);
+      // var hotelScale = d3.scale.linear().domain([0,29]).range([100, 550]);
+      // var g=barGraph.append("g")
+      //   .attr("transform","translate(50,250)")
+      //
+      //
+      // marriottWorldCountArray.forEach(function(d, i){//bar graph for publisher totals
+      //   	barGraph.append("line")
+      //     	.attr("x1", widthScale(0))
+      //     	.attr("y1", hotelScale(i))
+      //     	.attr("x2", widthScale(d.typeOfHotel))
+      //     	.attr("y2", hotelScale(i))
+      //     	.style("stroke",match(d.key))
+      //     	.style("stroke-width", 15);
+      //     barGraph.append("text")
+      //       .attr("x", widthScale(d.values)+5)
+      //       .attr("y",publisherScale(i)+4.5)
+      //       .text(Math.ceil(d.values)+" mil")
+      //       .style("fill", match(d.key))
+      //       .style("font-family","arial")
+      //     barGraph.append("text")
+      //       .attr("x", 290)
+      //       .attr("y", publisherScale(i)+4)
+      //       .style("fill", match(d.key))
+      //       .style("font-family","arial")
+      //       .style("text-anchor","end")
+      //       .text(d.key);
+      //
+      // });
 
 
     </script>
-  </p>
+
 </body>
 </html>
