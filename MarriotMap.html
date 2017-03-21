@@ -25,14 +25,35 @@
   <br></br>
   <br></br>
   <h2>Stays in the World</h2>
-
-  <svg id="svg1" height="400" width="1000"></svg>
+  <p id="svg1"> </p>
+  <br></br>
+  <br></br>
+  <br></br>
+  <h2> Stays in the US</h2>
+  <p id="svg2"></p>
+  <h2> Types of hotels stayed </h2>
+  <p id="svg3"></p>
 
   <script>
-    var svg1 = d3.select("#svg1");
+
+
+    var svg1 = d3.select("#svg1").append("svg")
+    .attr("height", 400).attr("width", 1000);
+
+    var svg2 = d3.select("#svg2").append("svg")
+          .attr("height", 600).attr("width", 1000);
+
+    var svg3 = d3.select("#svg3").append("svg")
+    .attr("height", 600).attr("width", 700);
+
+
 
     var projection = d3.geoEquirectangular().scale(75).translate([500/2, 300/2]);
     var pathGenerator = d3.geoPath().projection(projection);
+
+    var projection2 = d3.geoAlbersUsa().scale(75).translate([500/2, 300/2]);
+    var pathGenerator2= d3.geoPath().projection(projection2);
+
 
     var color = ["#00535F", "#046CB0", "#68C500", "#6BACE4", "#000000",  "#A6002F", "#6D1547"];
     var colorScale = d3.scaleOrdinal().domain(["AC Hotel", "Atlantis", "Courtyard", "Fairfield Inn", "JW Marriott", "Marriott", "Residence Inn"]).range(color);
@@ -41,33 +62,47 @@
     var countries;
     var marriottWorld;
     var marriottWorldCount=[];
+    var states;
+    var marriottStays;
+    var marriottCount=[];
 
 
     d3.queue()
       .defer(d3.json,"world-50m.json")
-      .defer(d3.csv,"marriottStays.csv?_=6")
-      .await(function (error, data, marriottWorld) {
+      .defer(d3.json,"us.json")
+      .defer(d3.csv,"marriottStays.csv")
+      .await(function (error, worldMap, usMap, marriottStays) {
+        worldStays(worldMap, marriottStays)
+        usStays(usMap, marriottStays)
+        barGraph(marriottStays)
+      });
 
-      rawMap = data;
+
+
+
+
+
+    function worldStays(worldMap, marriottStays){ //code for marriott world map
+      rawMap = worldMap;
 
       countries = topojson.feature(rawMap, rawMap.objects.countries); //
 
 
-      for (var index in marriottWorld){ //counts total number of marriott stays, stores lat, long,type of hotel into an array
-        if ((marriottWorld.hasOwnProperty(index))&&(marriottWorld[index].hotelName!=undefined)){
+      for (var index in marriottStays){ //counts total number of marriott stays, stores lat, long,type of hotel into an array
+        if ((marriottStays.hasOwnProperty(index))&&(marriottStays[index].hotelName!=undefined)){
 
-          if (!(marriottWorld[index].hotelName in marriottWorldCount)){
+          if (!(marriottStays[index].hotelName in marriottWorldCount)){
             var temparray=[]
-            temparray["State"]=marriottWorld[index].State
+            temparray["State"]=marriottStays[index].State
             temparray["count"]=1
 
-            temparray["Latitude"]=marriottWorld[index].Latitude
-            temparray["Longitude"]=marriottWorld[index].Longitude
-            temparray["typeOfHotel"]=marriottWorld[index].typeOfHotel
-            marriottWorldCount[marriottWorld[index].hotelName]=temparray
+            temparray["Latitude"]=marriottStays[index].Latitude
+            temparray["Longitude"]=marriottStays[index].Longitude
+            temparray["typeOfHotel"]=marriottStays[index].typeOfHotel
+            marriottWorldCount[marriottStays[index].hotelName]=temparray
           }
           else {
-            marriottWorldCount[marriottWorld[index].hotelName]["count"]+=1
+            marriottWorldCount[marriottStays[index].hotelName]["count"]+=1
           };
         };
       };
@@ -81,17 +116,7 @@
       };
 
 
-
-
-
-
       showWorld(marriottWorldCountArray);
-      console.log(marriottWorldCountArray)
-
-
-
-    });
-
 
 
     function showWorld(marriottWorldCountArray) {
@@ -135,178 +160,178 @@
             .attr("fill-opacity","0.5");
 
           });
+      };
+
+    }; //end of worldmap
+
+
+    function usStays(usMap, marriottStays){
+      states = topojson.feature(usMap, usMap.objects.states); //filter only show the states
+      marriottUS=marriottStays.filter(function(d) {return d.Country=="USA";}); //filter my data to just ones in the US
 
 
 
+      for (var index in marriottUS){ //counts total number of marriott stays
+        if (marriottUS.hasOwnProperty(index)){
+          if (!(marriottUS[index].hotelName in marriottCount)){
+            var temparray=[]
+            temparray["State"]=marriottUS[index].State
+            temparray["count"]=1
 
-    };
-
-      </script>
-</p>
-
-<br></br>
-<br></br>
-<br></br>
-<h2> Stays in the US</h2>
-
-  <p id="svg2"></p>
-  <p id="svg3"></p>
-
-    <svg id="svg2" height="600" width="1000"></svg>
-    <script>
-      var height = 600;
-      var width = 1000;
-      var padding = 50;
-
-      var svg2 = d3.select("#svg2").append("svg")
-      .attr("height", height).attr("width", width);
-
-      var states;
-      var marriottStays;
-      var marriottCount=[];
-
-      var projection2 = d3.geoAlbersUsa().scale(75).translate([500/2, 300/2]);
-      var pathGenerator2= d3.geoPath().projection(projection2);
-
-
-
-      var color = ["#00535F", "#046CB0", "#68C500", "#6BACE4", "#000000",  "#A6002F", "#6D1547"];
-      var colorScale = d3.scaleOrdinal().domain(["AC Hotel", "Atlantis", "Courtyard", "Fairfield Inn", "JW Marriott", "Marriott", "Residence Inn"]).range(color);
-
-      d3.queue()
-      .defer(d3.json,"us.json")
-      .defer(d3.csv,"marriottStays.csv?_=6")
-      .await(function (error, usMap, marriottStays) {
-
-
-        states = topojson.feature(usMap, usMap.objects.states); //filter only show the states
-
-        marriottUS=marriottStays.filter(function(d) {return d.Country=="USA";}); //filter my data to just ones in the US
-
-
-
-        for (var index in marriottUS){ //counts total number of marriott stays
-          if (marriottUS.hasOwnProperty(index)){
-            if (!(marriottUS[index].hotelName in marriottCount)){
-              var temparray=[]
-              temparray["State"]=marriottUS[index].State
-              temparray["count"]=1
-
-              temparray["Latitude"]=marriottUS[index].Latitude
-              temparray["Longitude"]=marriottUS[index].Longitude
-              temparray["typeOfHotel"]=marriottUS[index].typeOfHotel
-              marriottCount[marriottUS[index].hotelName]=temparray
-            }
-            else {
-              marriottCount[marriottUS[index].hotelName]["count"]+=1
-            };
+            temparray["Latitude"]=marriottUS[index].Latitude
+            temparray["Longitude"]=marriottUS[index].Longitude
+            temparray["typeOfHotel"]=marriottUS[index].typeOfHotel
+            marriottCount[marriottUS[index].hotelName]=temparray
+          }
+          else {
+            marriottCount[marriottUS[index].hotelName]["count"]+=1
           };
         };
-        var marriottCountArray=[]
-        for (var key in marriottCount){
-          if (marriottCount.hasOwnProperty(key)){
-            var obj=marriottCount[key]
-            obj["hotelName"]=key
-            marriottCountArray.push(obj)
-          }
-        };
+      };
+      var marriottCountArray=[]
+      for (var key in marriottCount){
+        if (marriottCount.hasOwnProperty(key)){
+          var obj=marriottCount[key]
+          obj["hotelName"]=key
+          marriottCountArray.push(obj)
+        }
+      };
 
 
-        showMap2(marriottCountArray);
+      showMap2(marriottCountArray);
 
-      });
+      // };
 
 
       function showMap2(marriottCountArray) {
 
-        projection2.fitExtent([[0,0], [svg2.attr("width"), svg2.attr("height")]], states); //generates the states
-        pathGenerator = d3.geoPath().projection(projection2);
+      projection2.fitExtent([[0,0], [svg2.attr("width"), svg2.attr("height")]], states); //generates the states
+      pathGenerator = d3.geoPath().projection(projection2);
 
 
-        var paths=svg2.selectAll("path.country").data(states.features);
-        paths.enter().append("path")
-        .attr("class","country")
-        .style("stroke","#FFFFFF")
-        .merge(paths)
-        .style("fill", "#D6E0D6")
-
-
-
-        .attr("d", function(country){
-          return pathGenerator2(country)
-        });
+      var paths=svg2.selectAll("path.country").data(states.features);
+      paths.enter().append("path")
+      .attr("class","country")
+      .style("stroke","#FFFFFF")
+      .merge(paths)
+      .style("fill", "#D6E0D6")
 
 
 
-
-        var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
-
-        var countScale = d3.scaleSqrt();
-        marriottCountArray.forEach(function(d){ //creates circles, appends tooltip
-            svg2.append("circle")
-              .attr("cx", projection2([d.Latitude, d.Longitude])[0] )
-              .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
-              .attr("id", d.hotelName)
-              .attr("stroke", colorScale(d.typeOfHotel))
-              .attr("stroke-width",0.2)
-              .attr("fill", colorScale(d.typeOfHotel))
-              .attr("r", function() {
-                return (countScale(d.count)*5); })
-              .on("mousemove", function(){
-                tooltip
-                  .style("left", d3.event.pageX - 50 + "px")
-                  .style("top", d3.event.pageY - 100 + "px")
-                  .style("display", "inline-block")
-                  .html("Hotel: "+d.hotelName+"</br>"+"Count: "+ d.count);
-                })
-              .on("mouseout", function(){ tooltip.style("display", "none");})
-              .attr("fill-opacity","0.5");
-
-            });
-          };
+      .attr("d", function(country){
+        return pathGenerator2(country)
+      });
 
 
-      //beginning of bar graph
-      var height = 500;
-      var width = 500;
-      var padding = 50;
-
-      var svg3 = d3.select("#svg3").append("svg")
-      .attr("height", height).attr("width", width);
-
-      console.log(marriottWorldCountArray)
-      // var widthScale = d3.scale.linear().domain([0, publisherTotalsArray[0]["values"]]).range([300,800]);
-      // var hotelScale = d3.scale.linear().domain([0,29]).range([100, 550]);
-      // var g=barGraph.append("g")
-      //   .attr("transform","translate(50,250)")
-      //
-      //
-      // marriottWorldCountArray.forEach(function(d, i){//bar graph for publisher totals
-      //   	barGraph.append("line")
-      //     	.attr("x1", widthScale(0))
-      //     	.attr("y1", hotelScale(i))
-      //     	.attr("x2", widthScale(d.typeOfHotel))
-      //     	.attr("y2", hotelScale(i))
-      //     	.style("stroke",match(d.key))
-      //     	.style("stroke-width", 15);
-      //     barGraph.append("text")
-      //       .attr("x", widthScale(d.values)+5)
-      //       .attr("y",publisherScale(i)+4.5)
-      //       .text(Math.ceil(d.values)+" mil")
-      //       .style("fill", match(d.key))
-      //       .style("font-family","arial")
-      //     barGraph.append("text")
-      //       .attr("x", 290)
-      //       .attr("y", publisherScale(i)+4)
-      //       .style("fill", match(d.key))
-      //       .style("font-family","arial")
-      //       .style("text-anchor","end")
-      //       .text(d.key);
-      //
-      // });
 
 
-    </script>
+      var tooltip = d3.select("body").append("div").attr("class", "toolTip");;
+
+      var countScale = d3.scaleSqrt();
+      marriottCountArray.forEach(function(d){ //creates circles, appends tooltip
+          svg2.append("circle")
+            .attr("cx", projection2([d.Latitude, d.Longitude])[0] )
+            .attr("cy", projection2([d.Latitude, d.Longitude])[1] )
+            .attr("id", d.hotelName)
+            .attr("stroke", colorScale(d.typeOfHotel))
+            .attr("stroke-width",0.2)
+            .attr("fill", colorScale(d.typeOfHotel))
+            .attr("r", function() {
+              return (countScale(d.count)*5); })
+            .on("mousemove", function(){
+              tooltip
+                .style("left", d3.event.pageX - 50 + "px")
+                .style("top", d3.event.pageY - 100 + "px")
+                .style("display", "inline-block")
+                .html("Hotel: "+d.hotelName+"</br>"+"Count: "+ d.count);
+              })
+            .on("mouseout", function(){ tooltip.style("display", "none");})
+            .attr("fill-opacity","0.5");
+
+          });
+        };
+
+
+    }; //end of US map
+
+
+    function barGraph(marriottStays){
+
+      var hotelTypeArray=[];
+      for (var index in marriottStays){ //counts total number of marriott stays, stores lat, long,type of hotel into an array
+        if ((marriottStays.hasOwnProperty(index))&&(marriottStays[index].hotelName!=undefined)){
+          if (!(marriottStays[index].typeOfHotel in hotelTypeArray)){
+            hotelTypeArray[marriottStays[index].typeOfHotel]=1
+          }
+          else {
+          hotelTypeArray[marriottStays[index].typeOfHotel]+=1
+          }
+        };
+      };
+      console.log(hotelTypeArray)
+
+
+    hotelMax=d3.max(d3.values(hotelTypeArray))
+
+    var hotelScale = d3.scaleBand().domain(loop()).range([0,500]).padding(0.5);
+    var height=500
+    var heightScale = d3.scaleLinear().domain([0, hotelMax]).range([height,0]);
+
+
+    function loop(){
+      var temparray=[]
+
+       for (var key in hotelTypeArray){
+          if (hotelTypeArray.hasOwnProperty(key)){
+          temparray.push(key)
+
+        }
+      }
+      return temparray
+    }
+
+
+
+
+
+
+    for (var key in hotelTypeArray){
+      if (hotelTypeArray.hasOwnProperty(key)){
+        svg3.append("rect")
+          .attr("x", hotelScale(key))
+          .attr("y", heightScale(hotelTypeArray[key]))
+          .attr("width", hotelScale.bandwidth())
+          .attr("height", height-heightScale(hotelTypeArray[key]))
+          .attr("transform", "translate(100,50)")
+          .style("fill", colorScale(key))
+        svg3.append("text")
+          .attr("x", hotelScale(key))
+          .attr("y", heightScale(hotelTypeArray[key]))
+          .attr("transform", "translate(110,45)")
+          .text(hotelTypeArray[key])
+          .style("fill",colorScale(key))
+          .style("align", "center")
+
+
+
+      }
+    };
+
+    svg3.append("g")
+    .attr("transform", "translate(100, 550)")
+    .call(d3.axisBottom(hotelScale));
+
+    // add the y Axis
+    svg3.append("g")
+        .attr("transform","translate(100,50)")
+        .call(d3.axisLeft(heightScale));
+
+  };
+
+
+      </script>
+</p>
+
 
 </body>
 </html>
